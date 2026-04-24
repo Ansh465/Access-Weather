@@ -1,0 +1,25 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3_17)">
+<g opacity="0.9">
+<rect x="6" y="2" width="20" height="28" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<rect x="8" y="8" width="16" height="16" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M30 6V26H2L2 6L30 6Z" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M28 4V28H4L4 4L28 4Z" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<circle cx="16" cy="16" r="14" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<circle cx="16" cy="16" r="8" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M0 0L32 32" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M16 0L16 32" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M11 0L11 32" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M32 11L-7.02952e-07 11" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M21 0L21 32" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M32 21L-7.02952e-07 21" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M32 16L-7.02952e-07 16" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+<path d="M32 0L-9.53674e-07 32" stroke="#F8CCD5" stroke-opacity="0.33" stroke-width="0.1"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_3_17">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

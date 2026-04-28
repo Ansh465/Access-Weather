@@ -52,3 +52,19 @@ INFO:     Finished server process [36336]
 INFO:     Started server process [36368]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'api/index.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36368]
+INFO:     Started server process [37102]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'backend/main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [37102]
+INFO:     Started server process [37171]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

@@ -9,3 +9,5 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 run_all.sh
+backend.log
+frontend.log

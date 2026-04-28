@@ -235,7 +235,7 @@ function CityPageContent() {
           fetch(
             `${GOOGLE_BASE}/forecast/days:lookup?key=${apiKey}&location.latitude=${geo.lat}&location.longitude=${geo.lng}&days=7`
           ),
-          fetch(`https://airquality.googleapis.com/v1/currentConditions:lookup?key=${airKey}`, {
+          fetch(`/api/airquality`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

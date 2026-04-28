@@ -25,3 +25,224 @@
  ✓ Compiled in 127ms (495 modules)
  ✓ Compiled in 77ms (495 modules)
  ✓ Compiled in 99ms (495 modules)
+ ✓ Compiled /_not-found in 119ms (498 modules)
+ ⨯ Error: Cannot find module './598.js'
+Require stack:
+- /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/_not-found/page.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/build/utils.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:198:28)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:162:22)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/city/page.js:1:16459
+    at Object.<anonymous> (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/city/page.js:1:16504)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js:109:84)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js:98:84
+    at async loadComponentsImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/next-server.js:710:36)
+    at async DevServer.findPageComponents (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:816:17)
+    at async /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:174:21)
+    at async handleRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:353:24)
+    at async requestHandlerImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:377:13)
+    at async Server.requestListener (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/_not-found/page.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/build/utils.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/city'
+}
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/a8745e6dd50f6deb.webpack.hot-update.json 404 in 183ms
+ ⨯ Error: Cannot find module './598.js'
+Require stack:
+- /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/_not-found/page.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/build/utils.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:198:28)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:162:22)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/city/page.js:1:16459
+    at Object.<anonymous> (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/city/page.js:1:16504)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js:109:84)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js:98:84
+    at async loadComponentsImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/next-server.js:710:36)
+    at async DevServer.findPageComponents (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:816:17)
+    at async /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:174:21)
+    at async handleRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:353:24)
+    at async requestHandlerImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:377:13)
+    at async Server.requestListener (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/_not-found/page.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/build/utils.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/city'
+}
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled /_error in 366ms (722 modules)
+ GET /city?city=new%20york 500 in 401ms
+ ⨯ Error: Cannot find module './598.js'
+Require stack:
+- /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/pages/_document.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/build/utils.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js
+- /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:198:28)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js:162:22)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/city/page.js:1:16459
+    at Object.<anonymous> (/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/app/city/page.js:1:16504)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js:109:84)
+    at /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js:98:84
+    at async loadComponentsImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/next-server.js:710:36)
+    at async DevServer.findPageComponents (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/base-server.js:816:17)
+    at async /Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:174:21)
+    at async handleRequest (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:353:24)
+    at async requestHandlerImpl (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js:377:13)
+    at async Server.requestListener (/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/webpack-runtime.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/.next/server/pages/_document.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/require.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/load-components.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/build/utils.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/anshpanchal/Documents/weather/Access-Weather/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/city'
+}
+ GET /city?city=new%20york 500 in 15ms
+ ✓ Compiled in 141ms (719 modules)

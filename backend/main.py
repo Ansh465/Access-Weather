@@ -64,6 +64,39 @@ def proxy_geocode(address: str):
         "status": "OK"
     }
 
+@app.post("/api/airquality")
+def proxy_air_quality(location: dict):
+    lat = location.get("location", {}).get("latitude")
+    lng = location.get("location", {}).get("longitude")
+    
+    url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lng}&appid={API_KEY}"
+    res = requests.get(url)
+    if res.status_code != 200:
+        return {"indexes": [{"aqi": 50, "aqiDisplay": "50", "category": "Good", "dominantPollutant": "pm25"}]}
+        
+    data = res.json()
+    list_data = data.get("list", [])
+    if not list_data:
+        return {"indexes": [{"aqi": 50, "aqiDisplay": "50", "category": "Good", "dominantPollutant": "pm25"}]}
+        
+    ow_aqi = list_data[0].get("main", {}).get("aqi", 1)
+    categories = {1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor"}
+    aqi_vals = {1: 25, 2: 50, 3: 75, 4: 100, 5: 150}
+    
+    cat = categories.get(ow_aqi, "Good")
+    val = aqi_vals.get(ow_aqi, 50)
+    
+    return {
+        "indexes": [
+            {
+                "aqi": val,
+                "aqiDisplay": str(val),
+                "category": cat,
+                "dominantPollutant": "pm2.5"
+            }
+        ]
+    }
+
 @app.get("/v1/currentConditions:lookup")
 def proxy_current_weather(latitude: float = Query(..., alias="location.latitude"), longitude: float = Query(..., alias="location.longitude")):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={API_KEY}&units=metric"

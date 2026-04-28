@@ -5,7 +5,6 @@ from datetime import datetime
 
 app = FastAPI()
 
-# Enable CORS so your Frontend can talk to this Backend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,7 +14,7 @@ app.add_middleware(
 
 API_KEY = "32ad0c24f1a7e51ba7dc0526302eb80b"
 
-@app.get("/forecast/{city}")
+@app.get("/api/forecast/{city}")
 def get_7_day_forecast(city: str):
     url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API_KEY}&units=metric"
     response = requests.get(url)
@@ -24,7 +23,6 @@ def get_7_day_forecast(city: str):
     if response.status_code != 200:
         return {"error": "City not found"}
 
-    # Filter to get one forecast per day like picking 12:00 PM
     daily_data = []
     for entry in data['list']:
         if "12:00:00" in entry['dt_txt']:
@@ -37,7 +35,7 @@ def get_7_day_forecast(city: str):
 
     return {"city": data['city']['name'], "forecast": daily_data}
 
-@app.get("/geocode")
+@app.get("/api/geocode")
 def proxy_geocode(address: str):
     geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={address}&limit=1&appid={API_KEY}"
     res = requests.get(geo_url)
@@ -62,7 +60,7 @@ def proxy_geocode(address: str):
         "status": "OK"
     }
 
-@app.get("/v1/currentConditions:lookup")
+@app.get("/api/v1/currentConditions:lookup")
 def proxy_current_weather(latitude: float = Query(..., alias="location.latitude"), longitude: float = Query(..., alias="location.longitude")):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={API_KEY}&units=metric"
     res = requests.get(url)
@@ -100,7 +98,7 @@ def proxy_current_weather(latitude: float = Query(..., alias="location.latitude"
         "precipitation": { "qpf": { "quantity": data.get("rain", {}).get("1h", 0.0) } }
     }
 
-@app.get("/v1/forecast/hours:lookup")
+@app.get("/api/v1/forecast/hours:lookup")
 def proxy_hourly_forecast(latitude: float = Query(..., alias="location.latitude"), longitude: float = Query(..., alias="location.longitude"), hours: int = 24):
     url = f"http://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={API_KEY}&units=metric"
     res = requests.get(url)
@@ -133,7 +131,7 @@ def proxy_hourly_forecast(latitude: float = Query(..., alias="location.latitude"
         
     return { "forecastHours": forecast_hours }
 
-@app.get("/v1/forecast/days:lookup")
+@app.get("/api/v1/forecast/days:lookup")
 def proxy_daily_forecast(latitude: float = Query(..., alias="location.latitude"), longitude: float = Query(..., alias="location.longitude"), days: int = 7):
     url = f"http://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={API_KEY}&units=metric"
     res = requests.get(url)
@@ -178,7 +176,7 @@ def proxy_daily_forecast(latitude: float = Query(..., alias="location.latitude")
         
     return { "forecastDays": forecast_days, "timeZone": { "id": "Europe/London" } }
 
-@app.get("/geocode/reverse")
+@app.get("/api/geocode/reverse")
 def proxy_reverse_geocode(latitude: float, longitude: float):
     reverse_url = f"http://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon={longitude}&limit=1&appid={API_KEY}"
     res = requests.get(reverse_url)
@@ -201,14 +199,3 @@ def proxy_reverse_geocode(latitude: float, longitude: float):
         ],
         "status": "OK"
     }
-
-@app.get("/api/weather/forecast")
-def get_7_day_forecast(city: str):
-    api_key = "32ad0c24f1a7e51ba7dc0526302eb80b"
-    url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric"
-    response = requests.get(url)
-    if response.status_code != 200:
-        return {"error": "City not found"}, 404
-    data = response.json()
-    daily_forecasts = [item for item in data['list'] if "12:00:00" in item['dt_txt']]
-    return {"city": data['city']['name'], "forecast": daily_forecasts}

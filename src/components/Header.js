@@ -43,9 +43,8 @@ export default function Header({ children }) {
   const closeMenu = () => setOpen(false);
 
   const resolveCityFromCoords = async (latitude, longitude) => {
-    if (!apiKey) throw new Error("Missing API key");
     const res = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
+      `/api/geocode/reverse?latitude=${latitude}&longitude=${longitude}`
     );
     if (!res.ok) throw new Error("Failed to resolve location");
     const data = await res.json();
@@ -78,7 +77,8 @@ export default function Header({ children }) {
         position.coords.longitude
       );
       router.push(`/city?city=${encodeURIComponent(cityName)}`);
-    } catch {
+    } catch (error) {
+      alert("Could not determine your location. Please verify browser permission grants.");
       router.push(cityLink);
     } finally {
       setLocating(false);
@@ -89,7 +89,7 @@ export default function Header({ children }) {
     <>
       <header className="header">
         <button className="pill logo-btn" type="button" onClick={handleLogoClick}>
-          {locating ? "Locating..." : "ACCESSWEATHER"}
+          {locating ? "Locating..." : "ACCESS WEATHER"}
         </button>
         {children}
         <button

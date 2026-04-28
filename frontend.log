@@ -1,0 +1,24 @@
+
+> weatherinuk-app@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ ✓ Compiled /city in 304ms (495 modules)
+ HEAD /city?city=New%20York 200 in 369ms
+ GET /city?city=New%20York 200 in 13ms
+ GET /city?city=new%20york 200 in 14ms
+ ✓ Compiled in 153ms (495 modules)
+ ✓ Compiled in 164ms (495 modules)
+ HEAD /city?city=New%20York 200 in 48ms
+ GET /city?city=New%20York 200 in 11ms
+ ✓ Compiled in 91ms (495 modules)
+ HEAD /city?city=London 200 in 53ms
+ GET /city?city=London 200 in 9ms
+ GET /city?city=new%20york 200 in 10ms
+ ✓ Compiled in 128ms (495 modules)
+ ✓ Compiled in 98ms (495 modules)

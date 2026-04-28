@@ -23,7 +23,7 @@ const iconEye = "/icon/Eye.svg";
 const iconSunSmall = "/icon/Sun-1.svg";
 
 const DEFAULT_CITY = "London";
-const GOOGLE_BASE = "https://weather.googleapis.com/v1";
+const GOOGLE_BASE = "/api/v1";
 
 const iconByCondition = (type) => {
   const upper = (type || "").toUpperCase();
@@ -120,6 +120,45 @@ const getTimeOfDay = (weatherData) => {
   return weatherData.isDaytime ? "day" : "night";
 };
 
+const getRainColor = (val, expected) => {
+  return "card-blue";
+};
+
+const getAQIColor = (aqi) => {
+  if (!aqi) return "card-violet";
+  if (aqi <= 50) return "card-mint";
+  if (aqi <= 100) return "card-peach";
+  return "card-rose";
+};
+
+const getUVColor = (uv) => {
+  if (uv == null) return "card-rose";
+  if (uv <= 2) return "card-mint";
+  if (uv <= 5) return "card-peach";
+  return "card-rose";
+};
+
+const getWindColor = (speed) => {
+  if (speed == null) return "card-mint";
+  if (speed >= 25) return "card-rose";
+  if (speed >= 15) return "card-peach";
+  return "card-mint";
+};
+
+const getFeelsColor = (temp) => {
+  if (temp == null) return "card-pink";
+  if (temp <= 10) return "card-blue";
+  if (temp >= 25) return "card-rose";
+  return "card-peach";
+};
+
+const getHumidityColor = (hum) => {
+  if (hum == null) return "card-blue";
+  if (hum >= 70) return "card-blue";
+  if (hum <= 35) return "card-peach";
+  return "card-sand";
+};
+
 export default function CityPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -173,15 +212,13 @@ export default function CityPage() {
   }, [cacheKey, city]);
 
   useEffect(() => {
-    if (!apiKey || !city) return;
+    if (!city) return;
 
     const load = async () => {
       setStatus({ loading: true, error: "" });
       try {
         const geoRes = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-            city
-          )}&key=${apiKey}`
+          `/api/geocode?address=${encodeURIComponent(city)}`
         );
         if (!geoRes.ok) throw new Error("Failed to load city");
         const geoData = await geoRes.json();
@@ -403,7 +440,7 @@ export default function CityPage() {
 
       <section className="metrics" data-node-id="42:900">
         <div className="metrics-grid four">
-          <article className="metric-card card-sand">
+          <article className={`metric-card ${getRainColor(rainValue, expectedRain)}`}>
             <div className="metric-title">
               <img src={iconDroplets} alt="" aria-hidden="true" />
               <span>Rainfall</span>
@@ -412,7 +449,7 @@ export default function CityPage() {
             <p>in last hour</p>
             <small>{expectedRain.toFixed(1)} mm expected in next 24h.</small>
           </article>
-          <article className="metric-card card-violet">
+          <article className={`metric-card ${getAQIColor(airQuality?.indexes?.[0]?.aqi)}`}>
             <div className="metric-title">
               <img src={iconGauge} alt="" aria-hidden="true" />
               <span>Air Quality</span>
@@ -428,7 +465,7 @@ export default function CityPage() {
                 : "No data"}
             </button>
           </article>
-          <article className="metric-card card-rose">
+          <article className={`metric-card ${getUVColor(current?.uvIndex)}`}>
             <div className="metric-title">
               <img src={iconSunSmall} alt="" aria-hidden="true" />
               <span>UV Index</span>
@@ -439,7 +476,7 @@ export default function CityPage() {
             </div>
             <small>Moderate</small>
           </article>
-          <article className="metric-card card-mint">
+          <article className={`metric-card ${getWindColor(windSpeed)}`}>
             <div className="metric-title">
               <img src={iconWind} alt="" aria-hidden="true" />
               <span>Wind</span>
@@ -451,7 +488,7 @@ export default function CityPage() {
         </div>
 
         <div className="metrics-grid four">
-          <article className="metric-card card-pink">
+          <article className={`metric-card ${getFeelsColor(current?.feelsLikeTemperature?.degrees ?? current?.temperature?.degrees)}`}>
             <div className="metric-title">
               <img src={iconSunSmall} alt="" aria-hidden="true" />
               <span>Feels Like</span>
@@ -459,7 +496,7 @@ export default function CityPage() {
             <h4>{current ? `${Math.round(current.feelsLikeTemperature?.degrees ?? 0)}°` : "--"}</h4>
             <small>Similar to the actual temperature.</small>
           </article>
-          <article className="metric-card card-blue">
+          <article className={`metric-card ${getHumidityColor(current?.relativeHumidity)}`}>
             <div className="metric-title">
               <img src={iconDroplets} alt="" aria-hidden="true" />
               <span>Humidity</span>

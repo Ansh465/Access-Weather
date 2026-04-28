@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 
@@ -159,7 +159,7 @@ const getHumidityColor = (hum) => {
   return "card-sand";
 };
 
-export default function CityPage() {
+function CityPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialCity = searchParams.get("city") || DEFAULT_CITY;
@@ -547,5 +547,20 @@ export default function CityPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function CityPage() {
+  return (
+    <Suspense fallback={
+      <div className="page-overlay" role="status" aria-live="polite">
+        <div className="overlay-card">
+          <div className="spinner" aria-hidden="true" />
+          <p>Loading application assets...</p>
+        </div>
+      </div>
+    }>
+      <CityPageContent />
+    </Suspense>
   );
 }

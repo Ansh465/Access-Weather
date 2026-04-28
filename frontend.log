@@ -22,3 +22,6 @@
  GET /city?city=new%20york 200 in 10ms
  ✓ Compiled in 128ms (495 modules)
  ✓ Compiled in 98ms (495 modules)
+ ✓ Compiled in 127ms (495 modules)
+ ✓ Compiled in 77ms (495 modules)
+ ✓ Compiled in 99ms (495 modules)

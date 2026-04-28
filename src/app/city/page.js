@@ -391,7 +391,7 @@ function CityPageContent() {
           {showSuggestions && suggestions.length > 0 && (
             <ul className="autocomplete-dropdown">
               {suggestions.map((item, index) => (
-                <li key={index} onClick={() => {
+                <li key={index} onMouseDown={() => {
                   setInputValue(item);
                   setCity(item);
                   setShowSuggestions(false);

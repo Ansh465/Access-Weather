@@ -123,7 +123,7 @@ export default function Home() {
           {showSuggestions && suggestions.length > 0 && (
             <ul className="autocomplete-dropdown">
               {suggestions.map((item, index) => (
-                <li key={index} onClick={() => {
+                <li key={index} onMouseDown={() => {
                   setSearchQuery(item);
                   setShowSuggestions(false);
                   navigate(item);
@@ -150,7 +150,7 @@ export default function Home() {
           {showSuggestions && suggestions.length > 0 && (
             <ul className="autocomplete-dropdown">
               {suggestions.map((item, index) => (
-                <li key={index} onClick={() => {
+                <li key={index} onMouseDown={() => {
                   setSearchQuery(item);
                   setShowSuggestions(false);
                   navigate(item);

@@ -174,6 +174,9 @@ function CityPageContent() {
   const [status, setStatus] = useState({ loading: false, error: "" });
   const [notice, setNotice] = useState("");
 
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const airKey = process.env.NEXT_PUBLIC_GOOGLE_AIR_QUALITY_API_KEY || apiKey;
   const cacheKey = `weatherCache:${city}`;
@@ -183,6 +186,30 @@ function CityPageContent() {
     setCity(initialCity);
     setInputValue(initialCity);
   }, [initialCity]);
+
+  useEffect(() => {
+    if (!inputValue || inputValue.length < 2) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+
+    const fetchSuggestions = async () => {
+      try {
+        const res = await fetch(`/api/autocomplete?q=${encodeURIComponent(inputValue)}`);
+        if (res.ok) {
+          const data = await res.json();
+          setSuggestions(data);
+          setShowSuggestions(true);
+        }
+      } catch (e) {
+        // fallback
+      }
+    };
+
+    const timer = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(timer);
+  }, [inputValue]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -361,6 +388,20 @@ function CityPageContent() {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
+          {showSuggestions && suggestions.length > 0 && (
+            <ul className="autocomplete-dropdown">
+              {suggestions.map((item, index) => (
+                <li key={index} onClick={() => {
+                  setInputValue(item);
+                  setCity(item);
+                  setShowSuggestions(false);
+                  router.push(`/city?city=${encodeURIComponent(item)}`);
+                }}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
         </form>
       </Header>
 

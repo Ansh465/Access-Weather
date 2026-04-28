@@ -97,6 +97,30 @@ def proxy_air_quality(location: dict):
         ]
     }
 
+@app.get("/api/autocomplete")
+def autocomplete_city(q: str = Query(...)):
+    if not q or len(q) < 2:
+        return []
+        
+    url = f"http://api.openweathermap.org/geo/1.0/direct?q={q}&limit=5&appid={API_KEY}"
+    res = requests.get(url)
+    if res.status_code != 200:
+        return []
+        
+    suggestions = []
+    for item in res.json():
+        name = item.get("name")
+        country = item.get("country")
+        state = item.get("state")
+        
+        display = f"{name}, {country}"
+        if state:
+            display = f"{name}, {state}, {country}"
+            
+        suggestions.append(display)
+        
+    return suggestions
+
 @app.get("/v1/currentConditions:lookup")
 def proxy_current_weather(latitude: float = Query(..., alias="location.latitude"), longitude: float = Query(..., alias="location.longitude")):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={API_KEY}&units=metric"

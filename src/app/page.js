@@ -6,6 +6,8 @@ import Header from "@/components/Header";
 export default function Home() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [popularCities, setPopularCities] = useState([
     { name: "London", temp: "--", condition: "--" },
     { name: "Manchester", temp: "--", condition: "--" },
@@ -15,6 +17,30 @@ export default function Home() {
     { name: "Glasgow", temp: "--", condition: "--" }
   ]);
   const [recentSearches, setRecentSearches] = useState([]);
+
+  useEffect(() => {
+    if (!searchQuery || searchQuery.length < 2) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+
+    const fetchSuggestions = async () => {
+      try {
+        const res = await fetch(`/api/autocomplete?q=${encodeURIComponent(searchQuery)}`);
+        if (res.ok) {
+          const data = await res.json();
+          setSuggestions(data);
+          setShowSuggestions(true);
+        }
+      } catch (e) {
+        // fallback
+      }
+    };
+
+    const timer = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -94,6 +120,19 @@ export default function Home() {
             value={searchQuery} 
             onChange={(e) => setSearchQuery(e.target.value)} 
           />
+          {showSuggestions && suggestions.length > 0 && (
+            <ul className="autocomplete-dropdown">
+              {suggestions.map((item, index) => (
+                <li key={index} onClick={() => {
+                  setSearchQuery(item);
+                  setShowSuggestions(false);
+                  navigate(item);
+                }}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
         </form>
       </Header>
 
@@ -108,6 +147,19 @@ export default function Home() {
             value={searchQuery} 
             onChange={(e) => setSearchQuery(e.target.value)} 
           />
+          {showSuggestions && suggestions.length > 0 && (
+            <ul className="autocomplete-dropdown">
+              {suggestions.map((item, index) => (
+                <li key={index} onClick={() => {
+                  setSearchQuery(item);
+                  setShowSuggestions(false);
+                  navigate(item);
+                }}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
           <button type="submit" className="cta">Search</button>
         </form>
 

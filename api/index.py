@@ -12,7 +12,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-API_KEY = "32ad0c24f1a7e51ba7dc0526302eb80b"
+import os
+
+API_KEY = os.getenv("OPENWEATHER_API_KEY", "")
 
 @app.get("/api/forecast/{city}")
 def get_7_day_forecast(city: str):

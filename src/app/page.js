@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 
@@ -8,7 +8,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [isSelection, setIsSelection] = useState(false);
+  const isSelectionRef = useRef(false);
   const [popularCities, setPopularCities] = useState([
     { name: "London", temp: "--", condition: "--" },
     { name: "Manchester", temp: "--", condition: "--" },
@@ -20,8 +20,8 @@ export default function Home() {
   const [recentSearches, setRecentSearches] = useState([]);
 
   useEffect(() => {
-    if (isSelection) {
-      setIsSelection(false);
+    if (isSelectionRef.current) {
+      isSelectionRef.current = false;
       return;
     }
 
@@ -46,7 +46,7 @@ export default function Home() {
 
     const timer = setTimeout(fetchSuggestions, 300);
     return () => clearTimeout(timer);
-  }, [searchQuery, isSelection]);
+  }, [searchQuery]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -61,34 +61,38 @@ export default function Home() {
     }
 
     if (typeof navigator !== "undefined" && navigator.permissions) {
-      navigator.permissions.query({ name: "geolocation" }).then((result) => {
-        if (result.state === "granted") {
-          navigator.geolocation.getCurrentPosition(async (position) => {
-            try {
-              const res = await fetch(
-                `/api/geocode/reverse?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
-              );
-              if (res.ok) {
-                const data = await res.json();
-                const geoResult = data.results?.[0];
-                if (geoResult) {
-                  const locality = geoResult.address_components?.find((item) =>
-                    item.types.includes("locality") || item.types.includes("postal_town")
-                  );
-                  const region = geoResult.address_components?.find((item) =>
-                    item.types.includes("administrative_area_level_1")
-                  );
-                  const name = locality?.long_name || geoResult.formatted_address;
-                  const cityName = `${name}${region ? `, ${region.short_name || region.long_name}` : ""}`;
-                  navigate(cityName);
+      const hasAutoLocated = sessionStorage.getItem("hasAutoLocated");
+      if (!hasAutoLocated) {
+        navigator.permissions.query({ name: "geolocation" }).then((result) => {
+          if (result.state === "granted") {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+              try {
+                const res = await fetch(
+                  `/api/geocode/reverse?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
+                );
+                if (res.ok) {
+                  const data = await res.json();
+                  const geoResult = data.results?.[0];
+                  if (geoResult) {
+                    const locality = geoResult.address_components?.find((item) =>
+                      item.types.includes("locality") || item.types.includes("postal_town")
+                    );
+                    const region = geoResult.address_components?.find((item) =>
+                      item.types.includes("administrative_area_level_1")
+                    );
+                    const name = locality?.long_name || geoResult.formatted_address;
+                    const cityName = `${name}${region ? `, ${region.short_name || region.long_name}` : ""}`;
+                    sessionStorage.setItem("hasAutoLocated", "true");
+                    navigate(cityName);
+                  }
                 }
+              } catch (e) {
+                console.error("Auto-location error", e);
               }
-            } catch (e) {
-              console.error("Auto-location error", e);
-            }
-          });
-        }
-      });
+            });
+          }
+        });
+      }
     }
 
     const fetchPopularCities = async () => {
@@ -161,7 +165,7 @@ export default function Home() {
             <ul className="autocomplete-dropdown">
               {suggestions.map((item, index) => (
                 <li key={index} onMouseDown={() => {
-                  setIsSelection(true);
+                  isSelectionRef.current = true;
                   setSearchQuery(item);
                   setShowSuggestions(false);
                   navigate(item);
@@ -189,7 +193,7 @@ export default function Home() {
             <ul className="autocomplete-dropdown">
               {suggestions.map((item, index) => (
                 <li key={index} onMouseDown={() => {
-                  setIsSelection(true);
+                  isSelectionRef.current = true;
                   setSearchQuery(item);
                   setShowSuggestions(false);
                   navigate(item);

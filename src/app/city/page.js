@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, Suspense } from "react";
+import { useEffect, useMemo, useState, Suspense, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 
@@ -176,7 +176,7 @@ function CityPageContent() {
 
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [isSelection, setIsSelection] = useState(false);
+  const isSelectionRef = useRef(false);
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const airKey = process.env.NEXT_PUBLIC_GOOGLE_AIR_QUALITY_API_KEY || apiKey;
@@ -189,8 +189,8 @@ function CityPageContent() {
   }, [initialCity]);
 
   useEffect(() => {
-    if (isSelection) {
-      setIsSelection(false);
+    if (isSelectionRef.current) {
+      isSelectionRef.current = false;
       return;
     }
 
@@ -215,7 +215,7 @@ function CityPageContent() {
 
     const timer = setTimeout(fetchSuggestions, 300);
     return () => clearTimeout(timer);
-  }, [inputValue, isSelection]);
+  }, [inputValue]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -398,7 +398,7 @@ function CityPageContent() {
             <ul className="autocomplete-dropdown">
               {suggestions.map((item, index) => (
                 <li key={index} onMouseDown={() => {
-                  setIsSelection(true);
+                  isSelectionRef.current = true;
                   setInputValue(item);
                   setCity(item);
                   setShowSuggestions(false);
